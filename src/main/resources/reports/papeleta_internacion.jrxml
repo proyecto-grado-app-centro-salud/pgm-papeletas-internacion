@@ -1,0 +1,210 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="exampleReport" language="java" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="40" uuid="5d8f2f6f-d93e-4945-b55a-8e1b629f2c57">
+	<parameter name="IMAGE_PATH" class="java.lang.String"/>
+	<parameter name="fechaIngreso" class="java.lang.String"/>
+	<parameter name="diagnostico" class="java.lang.String"/>
+	<parameter name="apellidoPaterno" class="java.lang.String"/>
+	<parameter name="apellidoMaterno" class="java.lang.String"/>
+	<parameter name="nombres" class="java.lang.String"/>
+	<parameter name="nhc" class="java.lang.String"/>
+	<parameter name="edad" class="java.lang.String"/>
+	<parameter name="sexo" class="java.lang.String"/>
+	<parameter name="estadoCivil" class="java.lang.String"/>
+	<parameter name="ocupacion" class="java.lang.String"/>
+	<parameter name="procedencia" class="java.lang.String"/>
+	<parameter name="unidad" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="firmaMedico" class="java.lang.String"/>
+	<parameter name="firmaPaciente" class="java.lang.String"/>
+	<parameter name="nombreCompletoMedico" class="java.lang.String"/>
+	<parameter name="nombreCompletoPaciente" class="java.lang.String"/>
+	<detail>
+		<band height="49">
+			<element kind="image" uuid="c970f5b3-f369-416e-a84b-31ce175149a3" x="450" y="5" width="36" height="38">
+				<expression><![CDATA[$P{IMAGE_PATH}]]></expression>
+			</element>
+			<element kind="staticText" uuid="10563923-6b66-43f5-a075-411f5e6b111c" x="20" y="13" width="160" height="30" fontSize="12.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[HOSPITAL CLINICO]]></text>
+			</element>
+		</band>
+		<band height="120">
+			<element kind="staticText" uuid="377a5459-3c71-47ae-9b8f-ffa618933d71" mode="Opaque" x="20" y="8" width="120" height="16" forecolor="#FFFFFF" backcolor="#0A4A6E" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Ap. paterno]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			</element>
+			<element kind="textField" uuid="ab0ac435-6f4c-44e6-b816-006bb8212076" x="20" y="26" width="120" height="32" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{apellidoPaterno}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="staticText" uuid="377a5459-3c71-47ae-9b8f-ffa618933d71" mode="Opaque" x="140" y="8" width="120" height="16" forecolor="#FFFFFF" backcolor="#0A4A6E" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Ap. materno]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="textField" uuid="ab0ac435-6f4c-44e6-b816-006bb8212076" x="140" y="25" width="120" height="32" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{apellidoMaterno}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="staticText" uuid="1250afd4-57bd-4ddf-b94b-fd6624b96b1b" mode="Opaque" x="20" y="60" width="120" height="16" forecolor="#FFFFFF" backcolor="#0A4A6E" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Edad]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="1fb44f9a-8120-4ba8-b6fb-e1bc720eed9d" x="20" y="76" width="120" height="32" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{edad}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="2daa0535-b215-4c03-88ef-e532099146b0" mode="Opaque" x="140" y="60" width="120" height="16" forecolor="#FFFFFF" backcolor="#0A4A6E" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Estado civil]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="26ab9202-eb26-412d-9580-48a31840aaad" x="140" y="80" width="120" height="32" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{estadoCivil}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="310c767a-85fd-4b4e-9964-9bf17553196a" mode="Opaque" x="260" y="60" width="120" height="16" forecolor="#FFFFFF" backcolor="#0A4A6E" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Unidad]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="68ea4ed6-7ff9-4905-939f-c0c44d69707b" x="260" y="76" width="120" height="32" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{unidad}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="10e0824a-9343-48e2-b25c-95e9d1b1509f" mode="Opaque" x="260" y="8" width="120" height="16" forecolor="#FFFFFF" backcolor="#0A4A6E" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Nombres]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			</element>
+			<element kind="textField" uuid="29af91d4-e2b2-49da-90eb-2507c95ae38b" x="260" y="26" width="120" height="32" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{nombres}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="staticText" uuid="0de65932-436b-4e31-894a-558ab8e48949" mode="Opaque" x="380" y="8" width="120" height="16" forecolor="#FFFFFF" backcolor="#0A4A6E" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[N. H. C.]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+			<element kind="textField" uuid="334f625a-9e54-4f8b-a1c4-c5eb15789339" x="380" y="25" width="120" height="32" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{nhc}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="rectangle" uuid="e00478c4-b3d1-4093-8e42-4709cb2e9ccf" mode="Transparent" x="20" y="7" width="120" height="53">
+				<pen lineWidth="2.0"/>
+			</element>
+			<element kind="rectangle" uuid="0f5090fd-3f73-45a9-81f0-0024ed4a6ad7" mode="Transparent" x="140" y="7" width="120" height="53">
+				<pen lineWidth="2.0"/>
+			</element>
+			<element kind="rectangle" uuid="43321116-4c5c-4221-9318-48e0ffd00082" mode="Transparent" x="260" y="7" width="120" height="53">
+				<pen lineWidth="2.0"/>
+			</element>
+			<element kind="rectangle" uuid="f7929bb9-969d-46f2-8aed-656344b2b21d" mode="Transparent" x="380" y="7" width="120" height="53">
+				<pen lineWidth="2.0"/>
+			</element>
+			<element kind="rectangle" uuid="7368f729-d4f9-4f86-b992-52e13c011a29" mode="Transparent" x="20" y="60" width="120" height="48">
+				<pen lineWidth="2.0"/>
+			</element>
+			<element kind="rectangle" uuid="84956627-eeec-4efc-8743-6e0b3f8d9061" mode="Transparent" x="140" y="60" width="120" height="48">
+				<pen lineWidth="2.0"/>
+			</element>
+			<element kind="rectangle" uuid="f964f60d-a282-4502-8346-6d668b744a01" mode="Transparent" x="260" y="60" width="120" height="48">
+				<pen lineWidth="2.0"/>
+			</element>
+		</band>
+		<band height="462" splitType="Stretch">
+			<element kind="staticText" uuid="69807dce-685d-4085-9557-6c1505a09f10" stretchType="ElementGroupHeight" x="0" y="0" width="515" height="30" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[PAPELETA DE INTERNACION]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			</element>
+			<element kind="staticText" uuid="f198ee49-d918-495f-88ed-81a814c49424" x="0" y="30" width="515" height="16" bold="true">
+				<text><![CDATA[Fecha de ingreso]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="86c838e0-48c0-41b8-a974-0ea88b6dff9d" positionType="Float" stretchType="ElementGroupHeight" x="0" y="50" width="515" height="20" textAdjust="StretchHeight" evaluationTime="Auto">
+				<expression><![CDATA[$P{fechaIngreso}]]></expression>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="76e2da99-6fb1-4cc9-8a07-65f14ff0b056" positionType="Float" stretchType="ElementGroupHeight" x="0" y="86" width="515" height="90" textAdjust="StretchHeight" evaluationTime="Auto">
+				<expression><![CDATA[$P{diagnostico}]]></expression>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="staticText" uuid="60593c85-48bd-4fbb-9eae-e39445927185" x="0" y="70" width="515" height="16" bold="true">
+				<text><![CDATA[Diagnostico]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+		</band>
+		<band height="66">
+			<element kind="staticText" uuid="f198ee49-d918-495f-88ed-81a814c49408" x="21" y="0" width="160" height="16" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Fecha]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="b2a8640a-045a-4845-b459-7f45356d84af" x="181" y="0" width="160" height="16" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Medico]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="d7a20822-7e97-4093-9c6b-8ee86fa68917" x="342" y="1" width="160" height="16" bold="true" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[Paciente]]></text>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="65a800f9-e325-4ba5-b139-83052811a32c" x="21" y="16" width="160" height="32" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{fecha}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			</element>
+			<element kind="textField" uuid="aeb953bc-f922-4d01-ad62-cd19aee4d8a2" x="181" y="16" width="160" height="20" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{firmaMedico}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			</element>
+			<element kind="textField" uuid="4fc2ef32-efc3-43c3-95cb-6f90af903158" x="341" y="16" width="160" height="20" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$P{firmaPaciente}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			</element>
+			<element kind="rectangle" uuid="5bc1ba83-fe2d-4fd2-ac5c-ec81ef4c6432" mode="Transparent" x="20" y="0" width="161" height="48">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<pen lineWidth="2.0"/>
+			</element>
+			<element kind="rectangle" uuid="dfee355b-d9c2-4015-a8ad-dcd9e22b1ba4" mode="Transparent" x="181" y="0" width="161" height="48">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<pen lineWidth="3.0"/>
+			</element>
+			<element kind="rectangle" uuid="15eea7cd-a4d2-4ffc-ad58-7d72f103beb5" mode="Transparent" x="341" y="0" width="161" height="48">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<pen lineWidth="3.0"/>
+			</element>
+			<element kind="textField" uuid="f37a04dd-d577-4f17-9c8c-c7f7f75b0050" x="180" y="36" width="161" height="12" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$P{nombreCompletoMedico}]]></expression>
+			</element>
+			<element kind="textField" uuid="335cbf11-ddce-4a83-a6c3-7a6074cba0a6" x="341" y="36" width="161" height="12" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$P{nombreCompletoPaciente}]]></expression>
+			</element>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+		</band>
+	</detail>
+</jasperReport>

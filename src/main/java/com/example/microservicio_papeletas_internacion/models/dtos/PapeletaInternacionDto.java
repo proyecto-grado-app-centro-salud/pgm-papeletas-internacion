@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PapeletaInternacionDto {
-    private Integer idPapeletaDeInternacion;
+    private Integer id;
     private Date fechaIngreso;
     private String diagnostico;
     private Date createdAt;
@@ -31,7 +31,7 @@ public class PapeletaInternacionDto {
 
     public PapeletaInternacionDto convertirPapeletaInternacionEntityAPapeletaInternacionDto(PapeletaInternacionEntity papeletaInternacionEntity) {
         PapeletaInternacionDto dto = new PapeletaInternacionDto();
-        dto.setIdPapeletaDeInternacion(papeletaInternacionEntity.getIdPapeletaDeInternacion());
+        dto.setId(papeletaInternacionEntity.getIdPapeletaDeInternacion());
         dto.setFechaIngreso(papeletaInternacionEntity.getFechaIngreso());
         dto.setDiagnostico(papeletaInternacionEntity.getDiagnostico());
         dto.setCreatedAt(papeletaInternacionEntity.getCreatedAt());

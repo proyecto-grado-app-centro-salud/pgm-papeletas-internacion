@@ -68,9 +68,6 @@ public class UsuarioEntity {
     @Column(name = "edad")
     private Integer edad;
 
-    @Column(name = "dias_sancion_peticion_ficha_presencial")
-    private Integer diasSancionPeticionFichaPresencial;
-
     @Column(name = "telefono")
     private String telefono;
 

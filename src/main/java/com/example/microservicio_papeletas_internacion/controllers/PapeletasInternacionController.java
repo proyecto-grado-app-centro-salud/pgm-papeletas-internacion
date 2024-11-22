@@ -1,8 +1,12 @@
 package com.example.microservicio_papeletas_internacion.controllers;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +26,6 @@ import com.example.microservicio_papeletas_internacion.services.PapeletasInterna
 
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(path = "/papeletas-internacion")
 public class PapeletasInternacionController {
     @Autowired
@@ -35,7 +38,7 @@ public class PapeletasInternacionController {
     public ResponseEntity<PapeletaInternacionDto> registrarPapeletaInternacion(@RequestBody PapeletaInternacionDto papeletaInternacionDto) {
         try {
             PapeletaInternacionDto nuevaPapeleta = papeletasInternacionService.registrarPapeletaInternacion(papeletaInternacionDto);
-            return new ResponseEntity<>(nuevaPapeleta, HttpStatus.OK);
+            return new ResponseEntity<>(nuevaPapeleta, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -84,5 +87,21 @@ public class PapeletasInternacionController {
     @GetMapping("/info-container")
     public @ResponseBody String obtenerInformacionContenedor() {
         return "microservicio historias clinicas: " + containerMetadataService.retrieveContainerMetadataInfo();
+    }
+    @GetMapping("/pdf")
+    public ResponseEntity<byte[]> obtenerPDFDePapeletaInternacion(PapeletaInternacionDto papeletaInternacionDto) {
+        try {
+            byte[] pdfBytes = papeletasInternacionService.obtenerPDFPapeletaInternacion(papeletaInternacionDto);
+            
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "inline; filename=PapeletaInternacion.pdf");
+            headers.add("Content-Type", "application/pdf");
+            headers.add("Content-Length", "" + pdfBytes.length);
+
+            return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        }
     }
 }

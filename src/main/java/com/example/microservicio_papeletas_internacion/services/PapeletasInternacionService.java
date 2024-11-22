@@ -15,14 +15,14 @@ import com.example.microservicio_papeletas_internacion.repositories.UsuariosRepo
 
 @Service
 public class PapeletasInternacionService {
-       @Autowired
+    @Autowired
     private PapeletaInternacionRepositoryJPA papeletaInternacionRepositoryJPA;
-
     @Autowired
     private HistoriaClinicaRepositoryJPA historiaClinicaRepositoryJPA;
-
     @Autowired
     private UsuariosRepositoryJPA usuariosRepositoryJPA;
+    @Autowired
+    PDFService pdfService;
 
     public PapeletaInternacionDto registrarPapeletaInternacion(PapeletaInternacionDto papeletaInternacionDto) {
         UsuarioEntity medicoEntity = usuariosRepositoryJPA.findById(papeletaInternacionDto.getIdMedico())
@@ -77,4 +77,13 @@ public class PapeletasInternacionService {
                         .map(papeleta -> new PapeletaInternacionDto().convertirPapeletaInternacionEntityAPapeletaInternacionDto(papeleta))
                         .toList();
     }
+
+    public byte[] obtenerPDFPapeletaInternacion(PapeletaInternacionDto papeletaInternacionDto) {
+        try {
+                return pdfService.generarPdfReportePapeletaInternacion(papeletaInternacionDto);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException("Error al generar el PDF de la historia clinica.", e);
+            }
+        }
 }
