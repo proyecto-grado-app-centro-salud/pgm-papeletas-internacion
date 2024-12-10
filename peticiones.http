@@ -1,0 +1,11 @@
+
+###
+GET http://localhost:9002/api/microservicio-papeletas-internacion/papeletas-internacion/pdf
+Content-Type: application/json
+
+{
+  "fechaIngreso": "2024-01-01",
+  "diagnostico": "Ingresado después de accidente automovilístico.",
+  "idHistoriaClinica": 1,
+  "idMedico": 8490543
+}

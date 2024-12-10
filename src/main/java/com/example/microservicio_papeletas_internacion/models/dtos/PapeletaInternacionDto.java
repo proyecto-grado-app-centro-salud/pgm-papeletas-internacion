@@ -29,7 +29,7 @@ public class PapeletaInternacionDto {
     private String pacientePropietario;
     private String ciPropietario;
 
-    public PapeletaInternacionDto convertirPapeletaInternacionEntityAPapeletaInternacionDto(PapeletaInternacionEntity papeletaInternacionEntity) {
+    public static PapeletaInternacionDto convertirPapeletaInternacionEntityAPapeletaInternacionDto(PapeletaInternacionEntity papeletaInternacionEntity) {
         PapeletaInternacionDto dto = new PapeletaInternacionDto();
         dto.setId(papeletaInternacionEntity.getIdPapeletaDeInternacion());
         dto.setFechaIngreso(papeletaInternacionEntity.getFechaIngreso());

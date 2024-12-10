@@ -6,16 +6,19 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,16 +43,18 @@ public class PapeletasInternacionController {
             PapeletaInternacionDto nuevaPapeleta = papeletasInternacionService.registrarPapeletaInternacion(papeletaInternacionDto);
             return new ResponseEntity<>(nuevaPapeleta, HttpStatus.CREATED);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping
-    public ResponseEntity<List<PapeletaInternacionDto>> obtenerTodasPapeletasInternacion() {
+    public ResponseEntity<Page<PapeletaInternacionDto>> obtenerTodasPapeletasInternacion(@RequestParam(required = false) String fechaInicio, @RequestParam(required = false) String fechaFin,@RequestParam(required = false) String ciPaciente,@RequestParam(required = false) String nombrePaciente,@RequestParam(required = false) String nombreMedico,@RequestParam(required = false) String nombreEspecialidad,@RequestParam(required = false) String diagnosticoPresuntivo,@RequestParam(required = false) Integer page,@RequestParam(required = false) Integer size) {
         try {
-            List<PapeletaInternacionDto> papeletas = papeletasInternacionService.obtenerTodasPapeletasInternacion();
+            Page<PapeletaInternacionDto> papeletas = papeletasInternacionService.obtenerTodasPapeletasInternacion(fechaInicio,fechaFin,ciPaciente,nombrePaciente,nombreMedico,nombreEspecialidad,diagnosticoPresuntivo,page,size);
             return new ResponseEntity<>(papeletas, HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -60,6 +65,7 @@ public class PapeletasInternacionController {
             PapeletaInternacionDto papeleta = papeletasInternacionService.obtenerPapeletaInternacionPorId(id);
             return new ResponseEntity<>(papeleta, HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -70,16 +76,18 @@ public class PapeletasInternacionController {
             PapeletaInternacionDto papeletaActualizada = papeletasInternacionService.actualizarPapeletaInternacion(id, actualizada);
             return new ResponseEntity<>(papeletaActualizada, HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/paciente/{idPaciente}")
-    public ResponseEntity<List<PapeletaInternacionDto>> obtenerPapeletasInternacionDePaciente(@PathVariable int idPaciente) {
+    public ResponseEntity<Page<PapeletaInternacionDto>> obtenerPapeletasInternacionDePaciente(@PathVariable int idPaciente,@RequestParam(required = false) String fechaInicio, @RequestParam(required = false) String fechaFin,@RequestParam(required = false) String nombreMedico,@RequestParam(required = false) String nombreEspecialidad,@RequestParam(required = false) String diagnosticoPresuntivo,@RequestParam(required = false) Integer page,@RequestParam(required = false) Integer size){
         try {
-            List<PapeletaInternacionDto> papeletas = papeletasInternacionService.obtenerTodasPapeletasInternacionDePaciente(idPaciente);
+            Page<PapeletaInternacionDto> papeletas = papeletasInternacionService.obtenerTodasPapeletasInternacionDePaciente(idPaciente,fechaInicio,fechaFin,nombreMedico,nombreEspecialidad,diagnosticoPresuntivo,page,size);
             return new ResponseEntity<>(papeletas, HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -102,6 +110,16 @@ public class PapeletasInternacionController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        }
+    }
+      @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable int id) {
+        try{
+            papeletasInternacionService.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
