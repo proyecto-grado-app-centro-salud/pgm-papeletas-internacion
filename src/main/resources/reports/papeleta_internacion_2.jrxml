@@ -20,6 +20,9 @@
 	<parameter name="nombreCompletoPaciente" class="java.lang.String"/>
 	<detail>
 		<band height="49">
+			<element kind="image" uuid="c970f5b3-f369-416e-a84b-31ce175149a3" x="450" y="5" width="36" height="38">
+				<expression><![CDATA[$P{IMAGE_PATH}]]></expression>
+			</element>
 			<element kind="staticText" uuid="10563923-6b66-43f5-a075-411f5e6b111c" x="20" y="13" width="160" height="30" fontSize="12.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
 				<text><![CDATA[HOSPITAL CLINICO]]></text>
 			</element>
@@ -117,17 +120,16 @@
 				<pen lineWidth="2.0"/>
 			</element>
 		</band>
-		<band height="189" splitType="Stretch">
-			<element kind="staticText" uuid="69807dce-685d-4085-9557-6c1505a09f10" stretchType="NoStretch" x="0" y="0" width="515" height="35" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+		<band height="462" splitType="Stretch">
+			<element kind="staticText" uuid="69807dce-685d-4085-9557-6c1505a09f10" stretchType="ElementGroupHeight" x="0" y="0" width="515" height="30" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
 				<text><![CDATA[PAPELETA DE INTERNACION]]></text>
 				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			</element>
-			<element kind="staticText" uuid="f198ee49-d918-495f-88ed-81a814c49424" positionType="Float" x="0" y="35" width="515" height="32" bold="true" vTextAlign="Middle">
+			<element kind="staticText" uuid="f198ee49-d918-495f-88ed-81a814c49424" x="0" y="30" width="515" height="16" bold="true">
 				<text><![CDATA[Fecha de ingreso]]></text>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 			</element>
-			<element kind="textField" uuid="86c838e0-48c0-41b8-a974-0ea88b6dff9d" positionType="Float" stretchType="NoStretch" x="0" y="67" width="515" height="32" textAdjust="StretchHeight" evaluationTime="Auto">
+			<element kind="textField" uuid="86c838e0-48c0-41b8-a974-0ea88b6dff9d" positionType="Float" stretchType="ElementGroupHeight" x="0" y="50" width="515" height="20" textAdjust="StretchHeight" evaluationTime="Auto">
 				<expression><![CDATA[$P{fechaIngreso}]]></expression>
 				<box>
 					<pen lineWidth="1.0"/>
@@ -137,11 +139,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 			</element>
-			<element kind="staticText" uuid="60593c85-48bd-4fbb-9eae-e39445927185" positionType="Float" x="0" y="99" width="515" height="32" bold="true" vTextAlign="Middle">
-				<text><![CDATA[Diagnostico]]></text>
-				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			</element>
-			<element kind="textField" uuid="a53fae90-3c7d-46ca-816b-12f2b399cbcf" positionType="Float" stretchType="NoStretch" x="0" y="131" width="515" height="32" textAdjust="StretchHeight" evaluationTime="Auto">
+			<element kind="textField" uuid="76e2da99-6fb1-4cc9-8a07-65f14ff0b056" positionType="Float" stretchType="ElementGroupHeight" x="0" y="86" width="515" height="90" textAdjust="StretchHeight" evaluationTime="Auto">
 				<expression><![CDATA[$P{diagnostico}]]></expression>
 				<box>
 					<pen lineWidth="1.0"/>
@@ -150,6 +148,10 @@
 					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
+			</element>
+			<element kind="staticText" uuid="60593c85-48bd-4fbb-9eae-e39445927185" x="0" y="70" width="515" height="16" bold="true">
+				<text><![CDATA[Diagnostico]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			</element>
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 		</band>

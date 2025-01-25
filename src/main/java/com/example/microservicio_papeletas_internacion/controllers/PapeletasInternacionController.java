@@ -26,6 +26,8 @@ import com.example.microservicio_papeletas_internacion.models.dtos.PapeletaInter
 import com.example.microservicio_papeletas_internacion.services.ContainerMetadataService;
 import com.example.microservicio_papeletas_internacion.services.PapeletasInternacionService;
 
+import jakarta.annotation.security.PermitAll;
+
 
 
 @RestController
@@ -38,6 +40,7 @@ public class PapeletasInternacionController {
     private PapeletasInternacionService papeletasInternacionService;
 
     @PostMapping
+    @PermitAll
     public ResponseEntity<PapeletaInternacionDto> registrarPapeletaInternacion(@RequestBody PapeletaInternacionDto papeletaInternacionDto) {
         try {
             PapeletaInternacionDto nuevaPapeleta = papeletasInternacionService.registrarPapeletaInternacion(papeletaInternacionDto);
@@ -49,6 +52,7 @@ public class PapeletasInternacionController {
     }
 
     @GetMapping
+    @PermitAll
     public ResponseEntity<Page<PapeletaInternacionDto>> obtenerTodasPapeletasInternacion(@RequestParam(required = false) String fechaInicio, @RequestParam(required = false) String fechaFin,@RequestParam(required = false) String ciPaciente,@RequestParam(required = false) String nombrePaciente,@RequestParam(required = false) String nombreMedico,@RequestParam(required = false) String nombreEspecialidad,@RequestParam(required = false) String diagnosticoPresuntivo,@RequestParam(required = false) Integer page,@RequestParam(required = false) Integer size) {
         try {
             Page<PapeletaInternacionDto> papeletas = papeletasInternacionService.obtenerTodasPapeletasInternacion(fechaInicio,fechaFin,ciPaciente,nombrePaciente,nombreMedico,nombreEspecialidad,diagnosticoPresuntivo,page,size);
@@ -60,6 +64,7 @@ public class PapeletasInternacionController {
     }
 
     @GetMapping("/{id}")
+    @PermitAll
     public ResponseEntity<PapeletaInternacionDto> obtenerPapeletaInternacionPorId(@PathVariable Integer id) {
         try {
             PapeletaInternacionDto papeleta = papeletasInternacionService.obtenerPapeletaInternacionPorId(id);
@@ -71,6 +76,7 @@ public class PapeletasInternacionController {
     }
 
     @PutMapping("/{id}")
+    @PermitAll
     public ResponseEntity<PapeletaInternacionDto> actualizarPapeletaInternacion(@PathVariable Integer id, @RequestBody PapeletaInternacionDto actualizada) {
         try {
             PapeletaInternacionDto papeletaActualizada = papeletasInternacionService.actualizarPapeletaInternacion(id, actualizada);
@@ -82,6 +88,7 @@ public class PapeletasInternacionController {
     }
 
     @GetMapping("/paciente/{idPaciente}")
+    @PermitAll
     public ResponseEntity<Page<PapeletaInternacionDto>> obtenerPapeletasInternacionDePaciente(@PathVariable int idPaciente,@RequestParam(required = false) String fechaInicio, @RequestParam(required = false) String fechaFin,@RequestParam(required = false) String nombreMedico,@RequestParam(required = false) String nombreEspecialidad,@RequestParam(required = false) String diagnosticoPresuntivo,@RequestParam(required = false) Integer page,@RequestParam(required = false) Integer size){
         try {
             Page<PapeletaInternacionDto> papeletas = papeletasInternacionService.obtenerTodasPapeletasInternacionDePaciente(idPaciente,fechaInicio,fechaFin,nombreMedico,nombreEspecialidad,diagnosticoPresuntivo,page,size);
@@ -93,10 +100,12 @@ public class PapeletasInternacionController {
     }
 
     @GetMapping("/info-container")
+    @PermitAll
     public @ResponseBody String obtenerInformacionContenedor() {
         return "microservicio historias clinicas: " + containerMetadataService.retrieveContainerMetadataInfo();
     }
     @GetMapping("/pdf")
+    @PermitAll
     public ResponseEntity<byte[]> obtenerPDFDePapeletaInternacion(PapeletaInternacionDto papeletaInternacionDto) {
         try {
             byte[] pdfBytes = papeletasInternacionService.obtenerPDFPapeletaInternacion(papeletaInternacionDto);
@@ -112,10 +121,22 @@ public class PapeletasInternacionController {
             return new ResponseEntity<>( HttpStatus.NOT_FOUND);
         }
     }
-      @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/{id}")
+    @PermitAll
     public ResponseEntity<Void> delete(@PathVariable int id) {
         try{
             papeletasInternacionService.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @DeleteMapping(value = "/historia-clinica/{id}")
+    @PermitAll
+    public ResponseEntity<Void> deletePapeletasInternacionDeHistoriaClinica(@PathVariable int id) {
+        try{
+            papeletasInternacionService.deletePapeletasInternacionDeHistoriaClinica(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

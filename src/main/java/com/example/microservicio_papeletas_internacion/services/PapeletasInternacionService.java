@@ -1,6 +1,7 @@
 package com.example.microservicio_papeletas_internacion.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import com.example.microservicio_papeletas_internacion.repositories.PapeletaInte
 import com.example.microservicio_papeletas_internacion.repositories.UsuariosRepositoryJPA;
 import com.example.microservicio_papeletas_internacion.util.PapeletasInternacionSpecification;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class PapeletasInternacionService {
     @Autowired
@@ -33,9 +36,9 @@ public class PapeletasInternacionService {
     private ConvertirTiposDatosService convertirTiposDatosService;
 
     public PapeletaInternacionDto registrarPapeletaInternacion(PapeletaInternacionDto papeletaInternacionDto) {
-        UsuarioEntity medicoEntity = usuariosRepositoryJPA.findById(papeletaInternacionDto.getIdMedico())
+        UsuarioEntity medicoEntity = usuariosRepositoryJPA.findByIdUsuarioAndDeletedAtIsNull(papeletaInternacionDto.getIdMedico())
                 .orElseThrow(() -> new RuntimeException("Médico no encontrado"));
-        HistoriaClinicaEntity historiaClinicaEntity = historiaClinicaRepositoryJPA.findById(papeletaInternacionDto.getIdHistoriaClinica())
+        HistoriaClinicaEntity historiaClinicaEntity = historiaClinicaRepositoryJPA.findByIdHistoriaClinicaAndDeletedAtIsNull(papeletaInternacionDto.getIdHistoriaClinica())
                 .orElseThrow(() -> new RuntimeException("Historia clínica no encontrada"));
 
         PapeletaInternacionEntity papeletaInternacionEntity = new PapeletaInternacionEntity();
@@ -68,9 +71,9 @@ public class PapeletasInternacionService {
         PapeletaInternacionEntity papeletaInternacionEntity = papeletaInternacionRepositoryJPA.findByIdPapeletaDeInternacionAndDeletedAtIsNull(idPapeleta)
                 .orElseThrow(() -> new RuntimeException("Papeleta de internación no encontrada"));
         
-        UsuarioEntity medicoEntity = usuariosRepositoryJPA.findById(papeletaInternacionDto.getIdMedico())
+        UsuarioEntity medicoEntity = usuariosRepositoryJPA.findByIdUsuarioAndDeletedAtIsNull(papeletaInternacionDto.getIdMedico())
                 .orElseThrow(() -> new RuntimeException("Médico no encontrado"));
-        HistoriaClinicaEntity historiaClinicaEntity = historiaClinicaRepositoryJPA.findById(papeletaInternacionDto.getIdHistoriaClinica())
+        HistoriaClinicaEntity historiaClinicaEntity = historiaClinicaRepositoryJPA.findByIdHistoriaClinicaAndDeletedAtIsNull(papeletaInternacionDto.getIdHistoriaClinica())
                 .orElseThrow(() -> new RuntimeException("Historia clínica no encontrada"));
 
         papeletaInternacionEntity.setFechaIngreso(papeletaInternacionDto.getFechaIngreso());
@@ -109,5 +112,8 @@ public class PapeletasInternacionService {
 
     }
 
-   
+    @Transactional
+    public void deletePapeletasInternacionDeHistoriaClinica(int idHistoriaClinica) {
+        papeletaInternacionRepositoryJPA.markAsDeletedAllPapeletasInternacionFromHistoriaClinica(idHistoriaClinica,new Date());
+    }
 }

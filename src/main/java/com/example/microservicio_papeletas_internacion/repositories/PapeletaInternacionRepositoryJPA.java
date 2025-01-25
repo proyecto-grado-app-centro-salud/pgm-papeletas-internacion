@@ -1,10 +1,12 @@
 package com.example.microservicio_papeletas_internacion.repositories;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -17,4 +19,8 @@ public interface PapeletaInternacionRepositoryJPA extends JpaRepository<Papeleta
     + "WHERE p.idUsuario = :idPaciente")
     List<PapeletaInternacionEntity> obtenerNotasEvolucionPaciente(@Param("idPaciente") int idPaciente);
     Optional<PapeletaInternacionEntity> findByIdPapeletaDeInternacionAndDeletedAtIsNull(int idPapeletaDeInternacion);
+
+    @Modifying
+    @Query(value = "UPDATE papeletas_internacion SET deleted_at = ?2 WHERE id_historia_clinica = ?1", nativeQuery = true)
+    void markAsDeletedAllPapeletasInternacionFromHistoriaClinica(int idHistoriaClinica, Date date);
 }
